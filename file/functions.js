@@ -34,29 +34,38 @@ $(window).resize(function() {
 		return this;
 	};
 })(jQuery);
+function timeElapse() {
+    var date = new Date(2009, 10, 14, 0, 0, 0); // 14 Nov 2009 00:00 IST
+    var current = new Date();
+    var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+    var days = Math.floor(seconds / (3600 * 24));
+    seconds = seconds % (3600 * 24);
+    var hours = Math.floor(seconds / 3600);
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    seconds = seconds % 3600;
+    var minutes = Math.floor(seconds / 60);
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    seconds = seconds % 60;
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
 
-function timeElapse(date){
-	var current = Date();
-	var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
-	var days = Math.floor(seconds / (3600 * 24));
-	seconds = seconds % (3600 * 24);
-	var hours = Math.floor(seconds / 3600);
-	if (hours < 10) {
-		hours = "0" + hours;
-	}
-	seconds = seconds % 3600;
-	var minutes = Math.floor(seconds / 60);
-	if (minutes < 10) {
-		minutes = "0" + minutes;
-	}
-	seconds = seconds % 60;
-	if (seconds < 10) {
-		seconds = "0" + seconds;
-	}
-	var result = "Days <span class=\"digit\">" + days + "</span> Hours <span class=\"digit\">" + hours + "</span> Minutes <span class=\"digit\">" + minutes; 
-	$("#clock").html(result);
+    var result = 
+        "Days <span class=\"digit\">" + days + 
+        "</span> Hours <span class=\"digit\">" + hours + 
+        "</span> Minutes <span class=\"digit\">" + minutes + "</span>";
 
-	var text = "THE WORLD JUST GOT LUCKIER SINCE ";
-	$("#message-box").html(text);
+    $("#clock").html(result);
+
+    var text = "THE WORLD GOT LUCKIER SINCE 14TH NOVEMBER 2009 💖";
+    $("#message-box").html(text);
+}
 
 }
+
+setInterval(timeElapse, 1000);
+
